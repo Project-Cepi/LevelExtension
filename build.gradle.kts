@@ -1,6 +1,8 @@
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+
 plugins {
     // Apply the Kotlin JVM plugin to add support for Kotlin.
-    id("org.jetbrains.kotlin.jvm") version "1.4.10"
+    kotlin("jvm") version "1.4.21"
     kotlin("plugin.serialization") version "1.4.10"
     maven
 
@@ -18,6 +20,7 @@ repositories {
     maven(url = "https://libraries.minecraft.net")
     maven(url = "https://jitpack.io")
     maven(url = "https://jcenter.bintray.com/")
+    maven("https://dl.bintray.com/kotlin/kotlin-eap")
 }
 
 dependencies {
@@ -31,20 +34,24 @@ dependencies {
     implementation(kotlin("reflect"))
 
     // Compile Minestom into project
-    implementation("com.github.Minestom:Minestom:-SNAPSHOT")
+    implementation("com.github.Minestom:Minestom:dad642a6a2")
 
     // OkHttp
     implementation("com.squareup.okhttp3", "okhttp", "4.9.0")
 
     // import kotlinx serialization
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.0.1")
+
+    // implement KStom
+    implementation("com.github.Project-Cepi:KStom:main-SNAPSHOT")
 }
 
 tasks.withType<Test> {
     useJUnitPlatform()
 }
 
-java {
-    sourceCompatibility = JavaVersion.VERSION_11
-    targetCompatibility = JavaVersion.VERSION_11
+configurations.all {
+    resolutionStrategy {
+        cacheChangingModulesFor(0, TimeUnit.SECONDS)
+    }
 }
