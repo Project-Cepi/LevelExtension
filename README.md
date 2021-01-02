@@ -3,7 +3,7 @@ Handles levels for Cepi.
 
 ## Installation
 
-Download the jar from [Rreleases](https://github.com/Project-Cepi/LevelExtension/releases)
+Download the jar from [Releases](https://github.com/Project-Cepi/LevelExtension/releases)
 OR compile it yourself. Instructions to do so are in Compile header
 
 Drop it into the `/extensions` folder.
