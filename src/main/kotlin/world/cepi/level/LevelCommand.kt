@@ -3,9 +3,8 @@ package world.cepi.level
 import net.minestom.server.command.builder.Command
 import net.minestom.server.command.builder.arguments.ArgumentType
 import net.minestom.server.entity.Player
-import world.cepi.kstom.addSyntax
-import world.cepi.kstom.arguments.ArgumentPlayer
-import world.cepi.kstom.arguments.asSubcommand
+import world.cepi.kstom.command.addSyntax
+import world.cepi.kstom.command.arguments.asSubcommand
 
 class LevelCommand: Command("level") {
 
