@@ -36,9 +36,6 @@ data class LevelDisplay(val level: Int, val xp: Int) {
 
             val level = levelFromExperience(experience)
 
-            MinecraftServer.getConnectionManager().broadcastMessage("$experience".asRich())
-            MinecraftServer.getConnectionManager().broadcastMessage("$level".asRich())
-
             return LevelDisplay(level, experience - getMaxExperience(level - 1))
         }
     }
