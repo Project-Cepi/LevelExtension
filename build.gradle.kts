@@ -2,8 +2,12 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
     // Apply the Kotlin JVM plugin to add support for Kotlin.
-    kotlin("jvm") version "1.4.21"
-    kotlin("plugin.serialization") version "1.4.10"
+    kotlin("jvm") version "1.4.31"
+    id("com.github.johnrengelman.shadow") version "6.1.0"
+    id("org.jetbrains.dokka") version "1.4.30"
+    kotlin("plugin.serialization") version "1.4.21"
+    `maven-publish`
+
     maven
 
     // Apply the application plugin to add support for building a jar
@@ -13,45 +17,71 @@ plugins {
 repositories {
     // Use jcenter for resolving dependencies.
     jcenter()
-
+    mavenCentral()
     // Use mavenCentral
     maven(url = "https://repo1.maven.org/maven2/")
     maven(url = "https://repo.spongepowered.org/maven")
     maven(url = "https://libraries.minecraft.net")
     maven(url = "https://jitpack.io")
     maven(url = "https://jcenter.bintray.com/")
-    maven(url = "https://dl.bintray.com/kotlin/kotlin-eap")
+    maven(url = "https://oss.sonatype.org/content/repositories/snapshots/")
 }
 
 dependencies {
     // Align versions of all Kotlin components
-    implementation(platform("org.jetbrains.kotlin:kotlin-bom"))
+    compileOnly(platform("org.jetbrains.kotlin:kotlin-bom"))
 
     // Use the Kotlin JDK 8 standard library.
-    implementation(kotlin("stdlib"))
+    compileOnly(kotlin("stdlib"))
 
     // Use the Kotlin reflect library.
-    implementation(kotlin("reflect"))
+    compileOnly(kotlin("reflect"))
 
     // Compile Minestom into project
-    implementation("com.github.Minestom:Minestom:df2ee23a7c")
+    compileOnly("com.github.Project-Cepi:Minestom:60a03a9c8e")
 
-    // OkHttp
-    implementation("com.squareup.okhttp3", "okhttp", "4.9.0")
+    // Get KStom
+    compileOnly("com.github.Project-Cepi:KStom:cbcf67f09c")
 
     // import kotlinx serialization
-    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.1.0")
+    compileOnly("org.jetbrains.kotlinx:kotlinx-serialization-json:1.1.0")
 
-    // implement KStom
-    implementation("com.github.Project-Cepi:KStom:3b80924771")
+    // Add Kepi
+    compileOnly("com.github.Project-Cepi:Kepi:e124e9d1f8")
 }
 
 tasks.withType<Test> {
     useJUnitPlatform()
 }
 
-configurations.all {
-    resolutionStrategy {
-        cacheChangingModulesFor(0, TimeUnit.SECONDS)
+configurations {
+    testImplementation {
+        extendsFrom(configurations.compileOnly.get())
     }
+}
+
+tasks {
+    named<com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar>("shadowJar") {
+        archiveBaseName.set("level")
+        mergeServiceFiles()
+        minimize()
+
+    }
+
+    test { useJUnitPlatform() }
+
+    build { dependsOn(shadowJar) }
+
+}
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_11
+    targetCompatibility = JavaVersion.VERSION_11
+}
+
+tasks.withType<KotlinCompile> { kotlinOptions.jvmTarget = "11" }
+val compileKotlin: KotlinCompile by tasks
+
+compileKotlin.kotlinOptions {
+    freeCompilerArgs = listOf("-Xinline-classes")
 }
