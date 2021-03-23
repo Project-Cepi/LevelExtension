@@ -22,17 +22,17 @@ class LevelCommand: Command("level") {
 
         addSyntax(level, add, amount) { sender, args ->
             val player = sender as Player
-            ExperienceManager.addExperience(player, LevelDisplay.getMaxExperience(args.get(amount)))
+            ExperienceManager.addExperience(player, ExperienceManager.maxExperienceOf(args.get(amount)))
         }
 
         addSyntax(level, remove, amount) { sender, args ->
             val player = sender as Player
-            ExperienceManager.removeExperience(player, LevelDisplay.getMaxExperience(args.get(amount)))
+            ExperienceManager.removeExperience(player, ExperienceManager.maxExperienceOf(args.get(amount)))
         }
 
         addSyntax(level, set, amount) { sender, args ->
             val player = sender as Player
-            ExperienceManager.setExperience(player, LevelDisplay.getMaxExperience(args.get(amount) - 1))
+            ExperienceManager.setExperience(player, ExperienceManager.maxExperienceOf(args.get(amount) - 1))
         }
 
         addSyntax(level, reset, amount) { sender ->
