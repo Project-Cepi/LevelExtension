@@ -37,6 +37,9 @@ dependencies {
     // Use the Kotlin reflect library.
     compileOnly(kotlin("reflect"))
 
+    // Use the JUpiter test library.
+    testImplementation("org.junit.jupiter:junit-jupiter:5.7.1")
+
     // Compile Minestom into project
     compileOnly("com.github.Project-Cepi:Minestom:902e1adc96")
 

@@ -59,7 +59,7 @@ object ExperienceManager {
      * The player will have to get 10 experience to progress to the next level.
      */
     fun maxExperienceOf(level: Int): Int {
-        return level.coerceIn(0..Int.MAX_VALUE) * 10
+        return 10 + level.coerceIn(0..Int.MAX_VALUE) * 10
     }
 
     /**
@@ -73,9 +73,15 @@ object ExperienceManager {
      *
      * @return The level this experience is at.
      */
-    tailrec fun levelFromExperience(experience: Int, predictedLevel: Int = 1): Int {
-        // If this level has more required experience than experience, make that the level.
-        return if (maxExperienceOf(predictedLevel) > experience) predictedLevel
+    tailrec fun levelFromExperience(experience: Int, predictedLevel: Int = 0): Int {
+        /*
+         If this level has more required experience than experience, make that the level.
+
+         We remove one as say (max exp = 10 + level * 10)
+         level 5 is 50, experience is 45, then instead of being level 4 itll be level 5.
+         This fixes that.
+        */
+        return if (maxExperienceOf(predictedLevel) > experience) predictedLevel - 1
         // Else just recurse
         else levelFromExperience(experience, predictedLevel + 1)
     }
