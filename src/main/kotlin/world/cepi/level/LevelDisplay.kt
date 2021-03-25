@@ -1,14 +1,17 @@
 package world.cepi.level
 
 import net.minestom.server.entity.Player
-import world.cepi.level.ExperienceManager
 
 data class LevelDisplay(val level: Int, val xp: Int) {
+
+    val displayXP: Float
+        get() = (xp / (ExperienceManager.experienceRequiredFor(level)).toFloat())
 
     fun displayOnPlayer(player: Player) {
         player.level = level
 
-        player.exp = (xp / (ExperienceManager.maxExperienceOf(level) - ExperienceManager.maxExperienceOf(level - 1)).toFloat())
+        // xp / (experienceRequired(currentLevel) - experienceRequired(lastLevel))
+        player.exp = displayXP
     }
 
     companion object {
@@ -22,9 +25,11 @@ data class LevelDisplay(val level: Int, val xp: Int) {
          */
         fun from(experience: Int): LevelDisplay {
 
-            val level = ExperienceManager.levelFromExperience(experience)
+            // Remove a level as that returns the next milestone required, not the current one.
+            val level = ExperienceManager.nextLevelFromExperience(experience) - 1
 
-            return LevelDisplay(level, experience - ExperienceManager.maxExperienceOf(level - 1))
+            // Returns the total player's experience minus last level's requirements.
+            return LevelDisplay(level, experience - ExperienceManager.experienceRequiredFor(level))
         }
     }
 }

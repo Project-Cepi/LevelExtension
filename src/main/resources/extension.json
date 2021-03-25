@@ -1,5 +1,8 @@
 {
   "entrypoint": "world.cepi.level.LevelExtension",
   "name": "LevelExtension",
-  "version": "1.0.0"
+  "version": "1.0.0",
+  "dependencies": [
+    "Kepi"
+  ]
 }

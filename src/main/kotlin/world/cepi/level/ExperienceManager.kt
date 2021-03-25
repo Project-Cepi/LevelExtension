@@ -2,7 +2,6 @@ package world.cepi.level
 
 import it.unimi.dsi.fastutil.objects.Object2IntMap
 import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap
-import net.minestom.server.MinecraftServer
 import net.minestom.server.entity.Player
 import world.cepi.level.events.XPChangeEvent
 
@@ -58,7 +57,7 @@ object ExperienceManager {
      * EX if the passed equation is level * 10,
      * The player will have to get 10 experience to progress to the next level.
      */
-    fun maxExperienceOf(level: Int): Int {
+    fun experienceRequiredFor(level: Int): Int {
         return 10 + level.coerceIn(0..Int.MAX_VALUE) * 10
     }
 
@@ -71,19 +70,13 @@ object ExperienceManager {
      *          though the closer it is to the actual level,
      *          the less calculations have to be performed.
      *
-     * @return The level this experience is at.
+     * @return The next level this experience needs to achieve.
      */
-    tailrec fun levelFromExperience(experience: Int, predictedLevel: Int = 0): Int {
-        /*
-         If this level has more required experience than experience, make that the level.
-
-         We remove one as say (max exp = 10 + level * 10)
-         level 5 is 50, experience is 45, then instead of being level 4 itll be level 5.
-         This fixes that.
-        */
-        return if (maxExperienceOf(predictedLevel) > experience) predictedLevel - 1
+    tailrec fun nextLevelFromExperience(experience: Int, predictedLevel: Int = 0): Int {
+        // If this level has more required experience than experience provided, return that
+        return if (experienceRequiredFor(predictedLevel) > experience) predictedLevel
         // Else just recurse
-        else levelFromExperience(experience, predictedLevel + 1)
+        else nextLevelFromExperience(experience, predictedLevel + 1)
     }
 
 }

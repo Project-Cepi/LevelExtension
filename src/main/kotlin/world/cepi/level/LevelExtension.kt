@@ -7,12 +7,15 @@ class LevelExtension : Extension() {
 
     override fun initialize() {
 
-        MinecraftServer.getCommandManager().register(LevelCommand())
+        MinecraftServer.getCommandManager().register(LevelCommand)
 
         logger.info("[LevelExtension] has been enabled!")
     }
 
     override fun terminate() {
+
+        MinecraftServer.getCommandManager().unregister(LevelCommand)
+
         logger.info("[LevelExtension] has been disabled!")
     }
 
