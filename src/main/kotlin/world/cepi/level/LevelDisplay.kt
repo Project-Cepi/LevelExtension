@@ -2,11 +2,27 @@ package world.cepi.level
 
 import net.minestom.server.entity.Player
 
-data class LevelDisplay(val level: Int, val xp: Int) {
+/**
+ * An object representing a player's level/xp display.
+ */
+data class LevelDisplay(
+    /** The level to display. */
+    val level: Int,
+    /** The whole number of XP to display. WIll turn into a number.*/
+    val xp: Int
+) {
 
+    /**
+     * The percentage to set the XP bar to.
+     */
     val displayXP: Float
         get() = (xp / (ExperienceManager.experienceRequiredFor(level)).toFloat())
 
+    /**
+     * Display the level and experience on a set player.
+     *
+     * @param player The player to display it on.
+     */
     fun displayOnPlayer(player: Player) {
         player.level = level
 

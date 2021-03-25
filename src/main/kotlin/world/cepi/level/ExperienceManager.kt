@@ -7,6 +7,9 @@ import world.cepi.level.events.XPChangeEvent
 
 object ExperienceManager {
 
+    /**
+     * Internal map to store XP for a player.
+     */
     private val playerMap: Object2IntMap<Player> = Object2IntOpenHashMap()
 
     /**
@@ -35,18 +38,35 @@ object ExperienceManager {
         }
     }
 
+    /**
+     * Get the amount of experience a player has.
+     *
+     * @param player The player to get it from
+     *
+     * @return The amount of experience that player has.
+     */
     fun getExperience(player: Player): Int = playerMap.getInt(player)
 
-    fun addExperience(player: Player, experience: Int) {
+    /**
+     * Adds an amount of experience to a player
+     *
+     * @param player The player to add the experience to.
+     * @param experience The amount of experience to add.
+     */
+    fun addExperience(player: Player, experience: Int) =
         setExperience(player, getExperience(player) + experience)
-    }
-
-    fun removeExperience(player: Player, experience: Int) {
-        setExperience(player, getExperience(player) - experience)
-    }
 
     /**
-     * Gets the experience required from a [leve]
+     * Removes an amount of experience from a player
+     *
+     * @param player The player to remove the experience from.
+     * @param experience The amount of experience to remove.
+     */
+    fun removeExperience(player: Player, experience: Int) =
+        setExperience(player, getExperience(player) - experience)
+
+    /**
+     * Gets the experience required from a [level]
      *
      * @param level The level experience is extracted from
      *
