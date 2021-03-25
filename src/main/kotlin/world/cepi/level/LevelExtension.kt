@@ -2,6 +2,7 @@ package world.cepi.level
 
 import net.minestom.server.MinecraftServer
 import net.minestom.server.extensions.Extension;
+import org.slf4j.Logger
 
 class LevelExtension : Extension() {
 

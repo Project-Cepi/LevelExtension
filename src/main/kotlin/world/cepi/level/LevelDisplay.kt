@@ -16,7 +16,7 @@ data class LevelDisplay(
      * The percentage to set the XP bar to.
      */
     val displayXP: Float
-        get() = (xp / (ExperienceManager.experienceRequiredFor(level)).toFloat())
+        get() = xp / (ExperienceManager.experienceRequiredFor(level + 1) - (ExperienceManager.experienceRequiredFor(level)).toFloat())
 
     /**
      * Display the level and experience on a set player.
@@ -25,6 +25,11 @@ data class LevelDisplay(
      */
     fun displayOnPlayer(player: Player) {
         player.level = level
+
+        // Shouldn't happen but just in case
+        if (!(0f..1f).contains(displayXP)) {
+            return
+        }
 
         // xp / (experienceRequired(currentLevel) - experienceRequired(lastLevel))
         player.exp = displayXP
@@ -45,7 +50,9 @@ data class LevelDisplay(
             val level = ExperienceManager.nextLevelFromExperience(experience) - 1
 
             // Returns the total player's experience minus last level's requirements.
-            return LevelDisplay(level, experience - ExperienceManager.experienceRequiredFor(level))
+            return LevelDisplay(
+                level.coerceIn(0..Int.MAX_VALUE),
+                (experience - ExperienceManager.experienceRequiredFor(level)).coerceIn(0..Int.MAX_VALUE))
         }
     }
 }
