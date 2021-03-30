@@ -25,6 +25,7 @@ repositories {
     maven(url = "https://jitpack.io")
     maven(url = "https://jcenter.bintray.com/")
     maven(url = "https://oss.sonatype.org/content/repositories/snapshots/")
+    maven(url = "https://repo.velocitypowered.com/snapshots/")
 }
 
 dependencies {
@@ -41,7 +42,7 @@ dependencies {
     testImplementation("org.junit.jupiter:junit-jupiter:5.7.1")
 
     // Compile Minestom into project
-    compileOnly("com.github.Project-Cepi:Minestom:902e1adc96")
+    compileOnly("com.github.Project-Cepi:Minestom:b29217e076")
 
     // Get KStom
     compileOnly("com.github.Project-Cepi:KStom:cbcf67f09c")
