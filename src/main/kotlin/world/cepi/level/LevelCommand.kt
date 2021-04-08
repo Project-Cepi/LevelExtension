@@ -6,6 +6,7 @@ import net.minestom.server.command.builder.Command
 import net.minestom.server.command.builder.arguments.ArgumentType
 import net.minestom.server.entity.Player
 import world.cepi.kepi.messages.sendFormattedMessage
+import world.cepi.kepi.messages.sendFormattedTranslatableMessage
 import world.cepi.kstom.command.addSyntax
 import world.cepi.kstom.command.arguments.asSubcommand
 
@@ -27,7 +28,7 @@ object LevelCommand: Command("level") {
         addSyntax(info) { sender ->
             val player = sender as Player
 
-            player.sendFormattedMessage(levelExperienceAmount, Component.text(ExperienceManager.getExperience(player), NamedTextColor.BLUE))
+            player.sendFormattedTranslatableMessage("experience", "total", Component.text(ExperienceManager.getExperience(player), NamedTextColor.BLUE))
         }
 
         addSyntax(level, add, amount) { sender, args ->
