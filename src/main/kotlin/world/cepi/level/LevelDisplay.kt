@@ -53,13 +53,12 @@ data class LevelDisplay(
          */
         fun from(experience: Int): LevelDisplay {
 
-            // Remove a level as that returns the next milestone required, not the current one.
-            val level = ExperienceManager.nextLevelFromExperience(experience) - 1
+            val nextLevel = ExperienceManager.nextLevelFromExperience(experience)
 
             // Returns the total player's experience minus last level's requirements.
             return LevelDisplay(
-                level.coerceIn(0..Int.MAX_VALUE), // coerce level
-                (experience - ExperienceManager.experienceRequiredFor(level)).coerceIn(0..Int.MAX_VALUE) // experience - exp passed's level
+                (nextLevel - 1).coerceIn(0..Int.MAX_VALUE), // coerce level
+                (experience - ExperienceManager.experienceRequiredFor(nextLevel - 1)).coerceIn(0..Int.MAX_VALUE) // experience - exp passed's level
             )
         }
     }

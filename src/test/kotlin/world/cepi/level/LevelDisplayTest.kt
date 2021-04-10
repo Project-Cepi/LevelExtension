@@ -24,4 +24,9 @@ class LevelDisplayTest {
         assert(LevelDisplay.from(1).displayXP <= 1)
     }
 
+    @Test
+    fun `1 XP should be at level 0`() {
+        assertEquals(LevelDisplay.from(1).level, 0)
+    }
+
 }

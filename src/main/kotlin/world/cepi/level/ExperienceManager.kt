@@ -7,9 +7,7 @@ import world.cepi.level.events.XPChangeEvent
 
 object ExperienceManager {
 
-    /**
-     * Internal map to store XP for a player.
-     */
+    /** Internal map to store XP for a player. */
     private val playerMap: Object2IntMap<Player> = Object2IntOpenHashMap()
 
     /**
@@ -77,15 +75,14 @@ object ExperienceManager {
      * EX if the passed equation is level * 10,
      * The player will have to get 10 experience to progress to the next level.
      *
-     * There needs to be an initial amount (since minecraft levels start at 0, not 1)
+     * Level 1 needs to have an amount
      *
      * EX:
-     * Level 0: 10
-     * Level 1: 20
-     * Level 2: 30
+     * Level 1: 10
+     * Level 2: 20
      */
     fun experienceRequiredFor(level: Int): Int {
-        return ((level + 1) * 10).coerceIn(0..Int.MAX_VALUE)
+        return ((level.coerceIn(0..Int.MAX_VALUE)) * 10).coerceIn(0..Int.MAX_VALUE)
     }
 
     /**
@@ -99,7 +96,7 @@ object ExperienceManager {
      *
      * @return The next level this experience needs to achieve.
      */
-    tailrec fun nextLevelFromExperience(experience: Int, predictedLevel: Int = 0): Int {
+    tailrec fun nextLevelFromExperience(experience: Int, predictedLevel: Int = 1): Int {
         // If this level has more required experience than experience provided, return that
         return if (experienceRequiredFor(predictedLevel) > experience) predictedLevel
         // Else just recurse
