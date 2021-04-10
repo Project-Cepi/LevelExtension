@@ -1,12 +1,13 @@
 package world.cepi.level
 
 import net.minestom.server.entity.Player
+import world.cepi.kepi.messages.sendFormattedTranslatableMessage
 
 /**
  * An object representing a player's level/xp display.
  */
 data class LevelDisplay(
-    /** The level to display. */
+    /** The level to display -- it is also the last level the (user) passed  */
     val level: Int,
     /** The whole number of XP to display. WIll turn into a number.*/
     val xp: Int
@@ -14,6 +15,9 @@ data class LevelDisplay(
 
     /**
      * The percentage to set the XP bar to.
+     *
+     * Current EQ: xp divided by (level to be passed's xp- level passed's xp), ex using the (level * 10) equation:
+     * 5/(50-40)
      */
     val displayXP: Float
         get() = xp / (ExperienceManager.experienceRequiredFor(level + 1) - (ExperienceManager.experienceRequiredFor(level)).toFloat())
@@ -28,7 +32,7 @@ data class LevelDisplay(
 
         // Shouldn't happen but just in case
         if (!(0f..1f).contains(displayXP)) {
-            return
+            player.sendFormattedTranslatableMessage("common", "error.internal")
         }
 
         // xp / (experienceRequired(currentLevel) - experienceRequired(lastLevel))
