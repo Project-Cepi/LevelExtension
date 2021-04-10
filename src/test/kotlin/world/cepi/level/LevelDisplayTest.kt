@@ -1,19 +1,27 @@
 package world.cepi.level
 
-import org.junit.jupiter.api.RepeatedTest
+import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 import kotlin.random.Random
 
 class LevelDisplayTest {
 
     @Test
-    fun `Display XP should be between 0 and 1 when 0`() {
-        assert((0f..1f).contains(LevelDisplay.from(0).displayXP))
+    fun `Displayed XP should be 0 when experience is 0`() {
+        assertEquals(0f, LevelDisplay.from(0).displayXP)
     }
 
-    @RepeatedTest(5)
-    fun `Display XP should be between 0 and 1`() {
-        assert((0f..1f).contains(LevelDisplay.from(Random.nextInt(1, 200)).displayXP))
+    @Test
+    fun `Displayed XP should be 0 when experience is level requirement`() {
+        assertEquals(0f, LevelDisplay.from(ExperienceManager.experienceRequiredFor(1)).displayXP)
+    }
+
+    @Test
+    fun `Display XP should be above 0 and below or equal to 1 when experience is greater than 0`() {
+
+        assert(LevelDisplay.from(1).displayXP > 0)
+
+        assert(LevelDisplay.from(1).displayXP <= 1)
     }
 
 }

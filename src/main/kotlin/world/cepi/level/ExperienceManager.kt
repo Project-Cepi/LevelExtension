@@ -76,9 +76,16 @@ object ExperienceManager {
      *
      * EX if the passed equation is level * 10,
      * The player will have to get 10 experience to progress to the next level.
+     *
+     * There needs to be an initial amount (since minecraft levels start at 0, not 1)
+     *
+     * EX:
+     * Level 0: 10
+     * Level 1: 20
+     * Level 2: 30
      */
     fun experienceRequiredFor(level: Int): Int {
-        return 10 + level.coerceIn(0..Int.MAX_VALUE) * 10
+        return ((level + 1) * 10).coerceIn(0..Int.MAX_VALUE)
     }
 
     /**

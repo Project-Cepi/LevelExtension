@@ -46,7 +46,7 @@ object LevelCommand: Command("level") {
             ExperienceManager.setExperience(player, ExperienceManager.experienceRequiredFor(args.get(amount) - 1))
         }
 
-        addSyntax(reset, amount) { sender ->
+        addSyntax(reset) { sender ->
             val player = sender as Player
             ExperienceManager.setExperience(player, 0)
         }

@@ -1,6 +1,7 @@
 package world.cepi.level
 
 import net.minestom.server.entity.Player
+import org.jetbrains.annotations.Contract
 import world.cepi.kepi.messages.sendFormattedTranslatableMessage
 
 /**
@@ -19,8 +20,9 @@ data class LevelDisplay(
      * Current EQ: xp divided by (level to be passed's xp- level passed's xp), ex using the (level * 10) equation:
      * 5/(50-40)
      */
-    val displayXP: Float
-        get() = xp / (ExperienceManager.experienceRequiredFor(level + 1) - (ExperienceManager.experienceRequiredFor(level)).toFloat())
+    val displayXP: Float by lazy {
+        xp / (ExperienceManager.experienceRequiredFor(level + 1) - (ExperienceManager.experienceRequiredFor(level)).toFloat())
+    }
 
     /**
      * Display the level and experience on a set player.
@@ -33,14 +35,15 @@ data class LevelDisplay(
         // Shouldn't happen but just in case
         if (!(0f..1f).contains(displayXP)) {
             player.sendFormattedTranslatableMessage("common", "error.internal")
+            return
         }
 
-        // xp / (experienceRequired(currentLevel) - experienceRequired(lastLevel))
         player.exp = displayXP
     }
 
     companion object {
 
+        @Contract(pure = true)
         /**
          * Get a level display from an amount of experience
          * 
@@ -55,8 +58,9 @@ data class LevelDisplay(
 
             // Returns the total player's experience minus last level's requirements.
             return LevelDisplay(
-                level.coerceIn(0..Int.MAX_VALUE),
-                (experience - ExperienceManager.experienceRequiredFor(level)).coerceIn(0..Int.MAX_VALUE))
+                level.coerceIn(0..Int.MAX_VALUE), // coerce level
+                (experience - ExperienceManager.experienceRequiredFor(level)).coerceIn(0..Int.MAX_VALUE) // experience - exp passed's level
+            )
         }
     }
 }
