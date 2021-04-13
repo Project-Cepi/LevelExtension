@@ -2,7 +2,7 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
     // Apply the Kotlin JVM plugin to add support for Kotlin.
-    kotlin("jvm") version "1.4.31"
+    kotlin("jvm") version "1.4.32"
     id("com.github.johnrengelman.shadow") version "6.1.0"
     id("org.jetbrains.dokka") version "1.4.30"
     kotlin("plugin.serialization") version "1.4.21"
@@ -14,7 +14,6 @@ plugins {
 
 repositories {
     // Use jcenter for resolving dependencies.
-    jcenter()
     mavenCentral()
     // Use mavenCentral
     maven(url = "https://repo1.maven.org/maven2/")

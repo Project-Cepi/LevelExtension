@@ -4,6 +4,9 @@ import it.unimi.dsi.fastutil.objects.Object2IntMap
 import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap
 import net.minestom.server.entity.Player
 import world.cepi.level.events.XPChangeEvent
+import kotlin.math.pow
+import kotlin.math.round
+import kotlin.math.roundToInt
 
 object ExperienceManager {
 
@@ -82,7 +85,7 @@ object ExperienceManager {
      * Level 2: 20
      */
     fun experienceRequiredFor(level: Int): Int {
-        return ((level.coerceIn(0..Int.MAX_VALUE)) * 10).coerceIn(0..Int.MAX_VALUE)
+        return (0.04 * (level.toDouble().pow(3)) + 0.8 * (level.toDouble().pow(2)) + 2 * level).roundToInt()
     }
 
     /**
