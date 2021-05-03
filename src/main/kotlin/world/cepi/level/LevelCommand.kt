@@ -7,20 +7,20 @@ import net.minestom.server.command.builder.arguments.ArgumentType
 import net.minestom.server.entity.Player
 import world.cepi.kepi.messages.sendFormattedTranslatableMessage
 import world.cepi.kstom.command.addSyntax
-import world.cepi.kstom.command.arguments.asSubcommand
+import world.cepi.kstom.command.arguments.literal
 
 object LevelCommand: Command("level") {
 
     init {
 
-        val level = "level".asSubcommand()
-        val xp = "xp".asSubcommand()
-        val info = "info".asSubcommand()
+        val level = "level".literal()
+        val xp = "xp".literal()
+        val info = "info".literal()
 
-        val add = "add".asSubcommand()
-        val set = "set".asSubcommand()
-        val reset = "reset".asSubcommand()
-        val remove = "remove".asSubcommand()
+        val add = "add".literal()
+        val set = "set".literal()
+        val reset = "reset".literal()
+        val remove = "remove".literal()
 
         val amount = ArgumentType.Integer("amount").min(0)
 
