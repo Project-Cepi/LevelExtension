@@ -5,7 +5,6 @@ import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap
 import net.minestom.server.entity.Player
 import world.cepi.level.events.XPChangeEvent
 import kotlin.math.pow
-import kotlin.math.round
 import kotlin.math.roundToInt
 
 object ExperienceManager {

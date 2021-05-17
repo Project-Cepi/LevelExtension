@@ -1,20 +1,19 @@
 package world.cepi.level
 
-import net.minestom.server.MinecraftServer
 import net.minestom.server.extensions.Extension;
+import world.cepi.kstom.command.register
+import world.cepi.kstom.command.unregister
+import world.cepi.level.command.LevelCommand
 
 class LevelExtension : Extension() {
 
     override fun initialize() {
-
-        MinecraftServer.getCommandManager().register(LevelCommand)
+        LevelCommand.register()
         logger.info("[LevelExtension] has been enabled!")
     }
 
     override fun terminate() {
-
-        MinecraftServer.getCommandManager().unregister(LevelCommand)
-
+        LevelCommand.unregister()
         logger.info("[LevelExtension] has been disabled!")
     }
 

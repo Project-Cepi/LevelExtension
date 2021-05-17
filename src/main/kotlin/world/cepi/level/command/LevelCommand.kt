@@ -1,4 +1,4 @@
-package world.cepi.level
+package world.cepi.level.command
 
 import net.kyori.adventure.text.Component
 import net.kyori.adventure.text.format.NamedTextColor
@@ -8,8 +8,9 @@ import net.minestom.server.entity.Player
 import world.cepi.kepi.messages.sendFormattedTranslatableMessage
 import world.cepi.kstom.command.addSyntax
 import world.cepi.kstom.command.arguments.literal
+import world.cepi.level.ExperienceManager
 
-object LevelCommand: Command("level") {
+internal object LevelCommand: Command("level") {
 
     init {
 
@@ -27,7 +28,10 @@ object LevelCommand: Command("level") {
         addSyntax(info) { sender ->
             val player = sender as Player
 
-            player.sendFormattedTranslatableMessage("experience", "total", Component.text(ExperienceManager.getExperience(player), NamedTextColor.BLUE))
+            player.sendFormattedTranslatableMessage(
+                "experience", "total",
+                Component.text(ExperienceManager.getExperience(player), NamedTextColor.BLUE)
+            )
         }
 
         addSyntax(level, add, amount) { sender, args ->
