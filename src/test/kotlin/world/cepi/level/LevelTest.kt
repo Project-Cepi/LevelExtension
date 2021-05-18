@@ -2,6 +2,7 @@ package world.cepi.level
 
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.RepeatedTest
+import org.junit.jupiter.api.Test
 import world.cepi.level.ExperienceManager.nextLevelFromExperience
 import world.cepi.level.ExperienceManager.experienceRequiredFor
 import kotlin.random.Random
@@ -20,7 +21,7 @@ class LevelTest {
      *
      * If none are removed, it should return the next level as that's the next milestone
      */
-    @RepeatedTest(5)
+    @Test
     fun `levelFromExperience should return high if equal to requirement`() {
 
         val level = Random.nextInt(maxLevel)
@@ -34,7 +35,7 @@ class LevelTest {
      *
      * If one is added, it should return the next level as that's the next milestone
      */
-    @RepeatedTest(5)
+    @Test
     fun `levelFromExperience should return high if greater than requirement`() {
 
         val level = Random.nextInt(maxLevel)
@@ -48,7 +49,7 @@ class LevelTest {
      *
      * If one is removed, it should return the level.
      */
-    @RepeatedTest(5)
+    @Test
     fun `levelFromExperience should return same if less than requirement`() {
 
         val level = Random.nextInt(maxLevel)
