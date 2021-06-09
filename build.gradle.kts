@@ -13,15 +13,12 @@ plugins {
 }
 
 repositories {
-    // Use jcenter for resolving dependencies.
-    mavenCentral()
     // Use mavenCentral
-    maven(url = "https://repo1.maven.org/maven2/")
-    maven(url = "https://repo.spongepowered.org/maven")
-    maven(url = "https://libraries.minecraft.net")
+    mavenCentral()
+
     maven(url = "https://jitpack.io")
-    maven(url = "https://jcenter.bintray.com/")
-    maven(url = "https://oss.sonatype.org/content/repositories/snapshots/")
+    maven(url = "https://repo.spongepowered.org/maven")
+    maven(url = "https://repo.minestom.com/repository/maven-public/")
     maven(url = "https://repo.velocitypowered.com/snapshots/")
 }
 
@@ -39,16 +36,16 @@ dependencies {
     testImplementation("org.junit.jupiter:junit-jupiter:5.7.2")
 
     // Compile Minestom into project
-    compileOnly("com.github.Project-Cepi:Minestom:e54f685ff9")
+    compileOnly("com.github.Project-Cepi:Minestom:73abe7a4d7")
 
     // Get KStom
-    compileOnly("com.github.Project-Cepi:KStom:3daf39daa9")
+    compileOnly("com.github.Project-Cepi:KStom:75fbdfb108")
 
     // import kotlinx serialization
     compileOnly("org.jetbrains.kotlinx:kotlinx-serialization-json:1.2.1")
 
     // Add Kepi
-    compileOnly("com.github.Project-Cepi:Kepi:c6ed2d6884")
+    compileOnly("com.github.Project-Cepi:Kepi:2045d0a53d")
 }
 
 tasks.withType<Test> {

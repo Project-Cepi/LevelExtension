@@ -40,7 +40,7 @@ internal object IncreaseLevelHook {
         val (x, y, z) = player.position
 
         player.playSound(Sound.sound(
-            SoundEvent.ENTITY_PLAYER_LEVELUP,
+            SoundEvent.PLAYER_LEVELUP,
             Sound.Source.MASTER,
             2f,
             1.5f
