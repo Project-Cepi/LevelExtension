@@ -4,9 +4,11 @@ import net.kyori.adventure.sound.Sound
 import net.kyori.adventure.text.Component
 import net.kyori.adventure.text.format.NamedTextColor
 import net.minestom.server.entity.Player
+import net.minestom.server.event.Event
+import net.minestom.server.event.EventNode
 import net.minestom.server.sound.SoundEvent
+import world.cepi.kstom.event.listenOnly
 import world.cepi.level.events.XPChangeEvent
-import world.cepi.kstom.addEventCallback
 import world.cepi.kstom.util.component1
 import world.cepi.kstom.util.component2
 import world.cepi.kstom.util.component3
@@ -14,7 +16,7 @@ import world.cepi.level.ExperienceManager
 
 internal object IncreaseLevelHook {
 
-    private val levelEventHook = fun(event: XPChangeEvent) = with(event) {
+    private fun levelEventHook(event: XPChangeEvent) = with(event) {
         // We're looking for XP going up, not down
         if (oldXP >= newXP) return
 
@@ -48,8 +50,8 @@ internal object IncreaseLevelHook {
 
     }
 
-    fun hook(player: Player) {
-        player.addEventCallback(levelEventHook)
+    fun hook(eventNode: EventNode<Event>) {
+        eventNode.listenOnly(::levelEventHook)
     }
 
 }

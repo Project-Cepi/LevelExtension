@@ -1,14 +1,16 @@
 package world.cepi.level.events
 
 import net.minestom.server.entity.Player
-import net.minestom.server.event.CancellableEvent
-import net.minestom.server.event.PlayerEvent
+import net.minestom.server.event.trait.CancellableEvent
+import net.minestom.server.event.trait.PlayerEvent
 
 class XPChangeEvent(
-    player: Player,
+    private val _player: Player,
     val oldXP: Int,
     var newXP: Int
-): PlayerEvent(player), CancellableEvent {
+): PlayerEvent, CancellableEvent {
+
+    override fun getPlayer() = _player
 
     private var cancelled: Boolean = false
 

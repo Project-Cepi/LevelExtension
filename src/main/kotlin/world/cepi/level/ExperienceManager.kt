@@ -3,6 +3,7 @@ package world.cepi.level
 import it.unimi.dsi.fastutil.objects.Object2IntMap
 import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap
 import net.minestom.server.entity.Player
+import world.cepi.kstom.Manager
 import world.cepi.level.events.XPChangeEvent
 import kotlin.math.pow
 import kotlin.math.roundToInt
@@ -28,7 +29,7 @@ object ExperienceManager {
             experience
         )
 
-        player.callCancellableEvent(XPChangeEvent::class.java, event) {
+        Manager.globalEvent.callCancellable(event) {
 
             val coercedExperience = event.newXP.coerceIn(0..Int.MAX_VALUE)
 
