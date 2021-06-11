@@ -25,6 +25,6 @@ class LevelExtension : Extension() {
         logger.info("[LevelExtension] has been disabled!")
     }
 
-    companion object: ExtensionCompanion<LevelExtension>(LevelExtension::class)
+    companion object: ExtensionCompanion<LevelExtension>(Any())
 
 }
