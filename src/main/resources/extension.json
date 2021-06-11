@@ -3,6 +3,7 @@
   "name": "LevelExtension",
   "version": "1.0.0",
   "dependencies": [
-    "Kepi"
+    "Kepi",
+    "KStom"
   ]
 }
