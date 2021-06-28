@@ -25,7 +25,7 @@ internal object LevelCommand: Command("level") {
 
         val amount = ArgumentType.Integer("amount").min(0)
 
-        addSyntax(info) { sender ->
+        addSyntax(info) {
             val player = sender as Player
 
             player.sendFormattedTranslatableMessage(
@@ -34,40 +34,40 @@ internal object LevelCommand: Command("level") {
             )
         }
 
-        addSyntax(level, add, amount) { sender, args ->
+        addSyntax(level, add, amount) {
             val player = sender as Player
-            ExperienceManager.addExperience(player, ExperienceManager.experienceRequiredFor(args.get(amount)))
+            ExperienceManager.addExperience(player, ExperienceManager.experienceRequiredFor(context.get(amount)))
         }
 
-        addSyntax(level, remove, amount) { sender, args ->
+        addSyntax(level, remove, amount) {
             val player = sender as Player
-            ExperienceManager.removeExperience(player, ExperienceManager.experienceRequiredFor(args.get(amount)))
+            ExperienceManager.removeExperience(player, ExperienceManager.experienceRequiredFor(context.get(amount)))
         }
 
-        addSyntax(level, set, amount) { sender, args ->
+        addSyntax(level, set, amount) {
             val player = sender as Player
-            ExperienceManager.setExperience(player, ExperienceManager.experienceRequiredFor(args.get(amount) - 1))
+            ExperienceManager.setExperience(player, ExperienceManager.experienceRequiredFor(context.get(amount) - 1))
         }
 
-        addSyntax(reset) { sender ->
+        addSyntax(reset) {
             val player = sender as Player
             ExperienceManager.setExperience(player, 0)
         }
 
 
-        addSyntax(xp, add, amount) { sender, args ->
+        addSyntax(xp, add, amount) {
             val player = sender as Player
-            ExperienceManager.addExperience(player, args.get(amount))
+            ExperienceManager.addExperience(player, context.get(amount))
         }
 
-        addSyntax(xp, remove, amount) { sender, args ->
+        addSyntax(xp, remove, amount) {
             val player = sender as Player
-            ExperienceManager.removeExperience(player, args.get(amount))
+            ExperienceManager.removeExperience(player, context.get(amount))
         }
 
-        addSyntax(xp, set, amount) { sender, args ->
+        addSyntax(xp, set, amount) {
             val player = sender as Player
-            ExperienceManager.setExperience(player, args.get(amount))
+            ExperienceManager.setExperience(player, context.get(amount))
         }
 
 

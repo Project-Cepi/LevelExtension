@@ -39,7 +39,7 @@ dependencies {
     compileOnly("com.github.Minestom:Minestom:78cc392007")
 
     // Get KStom
-    compileOnly("com.github.Project-Cepi:KStom:813a944c56")
+    compileOnly("com.github.Project-Cepi:KStom:41caee6491")
 
     // import kotlinx serialization
     compileOnly("org.jetbrains.kotlinx:kotlinx-serialization-json:1.2.1")
