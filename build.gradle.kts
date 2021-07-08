@@ -42,7 +42,7 @@ dependencies {
     compileOnly("com.github.Project-Cepi:KStom:07949853d1")
 
     // import kotlinx serialization
-    compileOnly("org.jetbrains.kotlinx:kotlinx-serialization-json:1.2.1")
+    compileOnly("org.jetbrains.kotlinx:kotlinx-serialization-json:1.2.2")
 
     // Add Kepi
     compileOnly("com.github.Project-Cepi:Kepi:2045d0a53d")
