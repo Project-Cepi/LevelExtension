@@ -48,10 +48,6 @@ dependencies {
     compileOnly("com.github.Project-Cepi:Kepi:c31304d5dd")
 }
 
-tasks.withType<Test> {
-    useJUnitPlatform()
-}
-
 configurations {
     testImplementation {
         extendsFrom(configurations.compileOnly.get())
@@ -59,15 +55,23 @@ configurations {
 }
 
 tasks {
+    processResources {
+        // Apply properties to extension.json
+        filesMatching("extension.json") {
+            expand(project.properties)
+        }
+    }
+
+    // Set name, minimize, and merge service files
     named<com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar>("shadowJar") {
-        archiveBaseName.set("level")
+        archiveBaseName.set(project.name)
         mergeServiceFiles()
         minimize()
-
     }
 
     test { useJUnitPlatform() }
 
+    // Make build depend on shadowJar as shading dependencies will most likely be required.
     build { dependsOn(shadowJar) }
 
 }
