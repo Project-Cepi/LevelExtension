@@ -2,7 +2,7 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
     // Apply the Kotlin JVM plugin to add support for Kotlin.
-    kotlin("jvm") version "1.5.0"
+    kotlin("jvm") version "1.5.20"
     id("com.github.johnrengelman.shadow") version "7.0.0"
     id("org.jetbrains.dokka") version "1.5.0"
     kotlin("plugin.serialization") version "1.4.21"
@@ -36,16 +36,16 @@ dependencies {
     testImplementation("org.junit.jupiter:junit-jupiter:5.7.2")
 
     // Compile Minestom into project
-    compileOnly("com.github.Minestom:Minestom:30f3fdd99a")
+    compileOnly("com.github.Minestom:Minestom:d7a6891153")
 
     // Get KStom
-    compileOnly("com.github.Project-Cepi:KStom:07949853d1")
+    compileOnly("com.github.Project-Cepi:KStom:62ddba2b59")
 
     // import kotlinx serialization
     compileOnly("org.jetbrains.kotlinx:kotlinx-serialization-json:1.2.2")
 
     // Add Kepi
-    compileOnly("com.github.Project-Cepi:Kepi:2045d0a53d")
+    compileOnly("com.github.Project-Cepi:Kepi:c31304d5dd")
 }
 
 tasks.withType<Test> {

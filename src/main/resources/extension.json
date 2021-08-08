@@ -1,7 +1,7 @@
 {
-  "entrypoint": "world.cepi.level.LevelExtension",
-  "name": "LevelExtension",
-  "version": "1.0.0",
+  "entrypoint": "${project.group}.${project.mainClass}",
+  "name": "${project.name}",
+  "version": "${project.version}",
   "dependencies": [
     "Kepi",
     "KStom"
