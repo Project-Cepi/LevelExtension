@@ -46,6 +46,9 @@ dependencies {
 
     // Add Kepi
     compileOnly("com.github.Project-Cepi:Kepi:b0bbd555b9")
+
+    // Add actions
+    compileOnly("com.github.Project-Cepi:Actions:1b9076dc77")
 }
 
 configurations {
