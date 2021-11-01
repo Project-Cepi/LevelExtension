@@ -34,15 +34,15 @@ internal object LevelCommand: Kommand({
     onlyPlayers
 
     syntax(level, add, amount) {
-        ExperienceManager.addExperience(player, ExperienceManager.experienceRequiredFor(context.get(amount)))
+        ExperienceManager.addLevels(player, !amount)
     }
 
     syntax(level, remove, amount) {
-        ExperienceManager.removeExperience(player, ExperienceManager.experienceRequiredFor(context.get(amount)))
+        ExperienceManager.removeExperience(player, ExperienceManager.experienceRequiredFor(!amount))
     }
 
     syntax(level, set, amount) {
-        ExperienceManager.setExperience(player, ExperienceManager.experienceRequiredFor(context.get(amount) - 1))
+        ExperienceManager.setExperience(player, ExperienceManager.experienceRequiredFor(!amount - 1))
     }
 
     syntax(reset) {
@@ -51,15 +51,15 @@ internal object LevelCommand: Kommand({
 
 
     syntax(xp, add, amount) {
-        ExperienceManager.addExperience(player, context.get(amount))
+        ExperienceManager.addExperience(player, !amount)
     }
 
     syntax(xp, remove, amount) {
-        ExperienceManager.removeExperience(player, context.get(amount))
+        ExperienceManager.removeExperience(player, !amount)
     }
 
     syntax(xp, set, amount) {
-        ExperienceManager.setExperience(player, context.get(amount))
+        ExperienceManager.setExperience(player, !amount)
     }
 
 }, "level")

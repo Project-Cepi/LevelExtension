@@ -57,6 +57,10 @@ object ExperienceManager {
     fun addExperience(player: Player, experience: Int) =
         setExperience(player, getExperience(player) + experience)
 
+    fun addLevels(player: Player, levels: Int) {
+        addExperience(player, getExperience(player) + experienceRequiredFor(player.level + levels))
+    }
+
     /**
      * Removes an amount of experience from a player
      *
