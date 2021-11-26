@@ -15,12 +15,9 @@ class LevelExtension : Extension() {
         LevelCommand.register()
         IncreaseLevelHook.hook(eventNode)
 
-        logger.info("[LevelExtension] has been enabled!")
-    }
+        ActionManager.addAll(listOf(LevelAction::class, ExperienceAction::class))
 
-    override fun postInitialize() {
-        if (Manager.extension.hasExtension("actions"))
-            ActionManager.addAll(listOf(LevelAction::class, ExperienceAction::class))
+        logger.info("[LevelExtension] has been enabled!")
     }
 
     override fun terminate() {
