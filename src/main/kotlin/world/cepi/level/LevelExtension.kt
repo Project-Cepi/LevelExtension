@@ -15,7 +15,7 @@ class LevelExtension : Extension() {
         LevelCommand.register()
         IncreaseLevelHook.hook(eventNode)
 
-        ActionManager.addAll(listOf(LevelAction::class, ExperienceAction::class))
+        ActionManager.add(LevelAction::class, ExperienceAction::class)
 
         logger.info("[LevelExtension] has been enabled!")
     }
