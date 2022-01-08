@@ -36,10 +36,10 @@ dependencies {
     testImplementation("org.junit.jupiter:junit-jupiter:5.8.2")
 
     // Compile Minestom into project
-    compileOnly("com.github.Minestom:Minestom:2ef8e957a0")
+    compileOnly("com.github.Minestom:Minestom:4ee5cbe424")
 
     // Get KStom
-    compileOnly("com.github.Project-Cepi:KStom:a32f2aa3b5")
+    compileOnly("com.github.Project-Cepi:KStom:05b5e1f2a1")
 
     // import kotlinx serialization
     compileOnly("org.jetbrains.kotlinx:kotlinx-serialization-json:1.3.2")
@@ -60,7 +60,7 @@ configurations {
 tasks {
     processResources {
         // Apply properties to extension.json
-        filesMatching("extension.json") {
+        filesMatching("META-INF/extension.json") {
             expand(project.properties)
         }
     }
@@ -80,11 +80,11 @@ tasks {
 }
 
 java {
-    sourceCompatibility = JavaVersion.VERSION_16
-    targetCompatibility = JavaVersion.VERSION_16
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
 }
 
-tasks.withType<KotlinCompile> { kotlinOptions.jvmTarget = "16" }
+tasks.withType<KotlinCompile> { kotlinOptions.jvmTarget = "17" }
 val compileKotlin: KotlinCompile by tasks
 
 compileKotlin.kotlinOptions {
