@@ -84,6 +84,18 @@ java {
     targetCompatibility = JavaVersion.VERSION_17
 }
 
+publishing {
+    publications {
+        create<MavenPublication>("maven") {
+            groupId = project.properties["group"] as? String?
+            artifactId = project.name
+            version = project.properties["version"] as? String?
+
+            from(components["java"])
+        }
+    }
+}
+
 tasks.withType<KotlinCompile> { kotlinOptions.jvmTarget = "17" }
 val compileKotlin: KotlinCompile by tasks
 
