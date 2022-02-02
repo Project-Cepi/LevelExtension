@@ -4,6 +4,7 @@ import net.kyori.adventure.text.Component
 import net.kyori.adventure.text.format.NamedTextColor
 import net.minestom.server.command.builder.arguments.ArgumentType
 import net.minestom.server.entity.Player
+import world.cepi.kepi.command.subcommand.applyHelp
 import world.cepi.kepi.messages.sendFormattedTranslatableMessage
 import world.cepi.kstom.command.arguments.literal
 import world.cepi.kstom.command.kommand.Kommand
@@ -21,6 +22,22 @@ internal object LevelCommand: Kommand({
     val remove by literal
 
     val amount = ArgumentType.Integer("amount").min(0)
+
+    applyHelp {
+        """
+            The level extension implements Cepi's <blue>experience system<gray>.
+            
+            There are two xp types: <blue>level & xp<gray>.
+            
+            Each XP type has the commands <yellow>add, set, reset, and remove
+            
+            For example,
+            <yellow>/level xp add 5
+            
+            To see your levelling information run <yellow>/level info
+            Or look at your experience bar.
+        """.trimIndent()
+    }
 
     syntax(info) {
         val player = sender as Player
