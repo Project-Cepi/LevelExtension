@@ -48,7 +48,7 @@ internal object LevelCommand: Kommand({
         )
     }
 
-    onlyPlayers
+    onlyPlayers()
 
     syntax(level, add, amount) {
         ExperienceManager.addLevels(player, !amount)
